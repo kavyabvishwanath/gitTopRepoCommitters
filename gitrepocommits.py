@@ -11,7 +11,7 @@ if __name__ == "__main__":
         try:
                 opts, args = getopt.getopt(argv,"o:r:c:",["org=","repos=","commits="])
         except getopt.GetoptError:
-                print "usage python get_org_repo_commits -o <orgname> -r <r top repos> -c <c top commits>"
+                print "usage python gitrepocommits.py -o <orgname> -r <r top repos> -c <c top commits>"
                 sys.exit(2)
         org=''
         repo=''
