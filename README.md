@@ -8,8 +8,8 @@ example : python gitrepocommits.py -o google -r 10 -c 5
 when no arguments specified: org=google, r=5, c=3
 
 Example :
-
 $python gitrepocommits.py -o google -r 5 -c 3
+
       dagger Ron Shapiro 30
       ios-webkit-debug-proxy artygus 11
       ios-webkit-debug-proxy GitHub 10
