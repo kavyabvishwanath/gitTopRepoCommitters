@@ -1,3 +1,5 @@
+## the script finds committers specific data for the repos
+
 from urllib2 import Request, urlopen, URLError
 import json
 import operator
@@ -13,15 +15,22 @@ def getResponse(URL):
         except URLError, e:
                 print 'Error fetching Repos: ',e
 
+#this module sorts the list of commiters by the number of commits
 def getTopCommits(commitersCommit):
+        #sorts by the number of commits
         sortByCommits=sorted(commitersCommit.items(),key=operator.itemgetter(1),reverse=True)
         return sortByCommits
 
+#This module returns topNCommiters for the passed topNrepos
 def getTopCommitters(baseURL,org,topNrepos,n):
+        #final output list top c committers
         topRepoCommittersList=[]
         topRepoCommitters=collections.namedtuple('RepoCommitters',['repo','committer','commits'])
+        #holds committers profile
         committerProfileList={}
         committerProfile=collections.namedtuple('CommitterProfile',['name','email'])
+        #the loop gets commits for the selected top r repos
+
         for repo in topNrepos:
                 commitersCommit={}
                 repoCommitsURL=getRepoCommitsURL(baseURL,org,repo)
@@ -36,11 +45,15 @@ def getTopCommitters(baseURL,org,topNrepos,n):
                                                                              committer['commit']['committer']['email']
                                                                         ))
                 topCommitters=getTopCommits(commitersCommit)
+
+                #if the top repo has less than c committers handle then return all committers else return top c
                 if len(topCommitters)<n:
                         lastIndex=len(topCommitters)
                 else:
                         lastIndex=n
                 count=0
+
+                #find top repo - top committers profile
                 for c in topCommitters:
                         count=count+1
                         topRepoCommittersList.append(topRepoCommitters(repo,committerProfileList[c[0]].name,c[1]))
