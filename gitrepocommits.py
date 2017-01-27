@@ -35,5 +35,5 @@ if __name__ == "__main__":
         topCommitters=getTopCommitters(baseURL,org,topNrepos.keys(),int(committers))
         #print top committers
         for topCommiter in topCommitters:
-                print topCommiter.repo,topCommiter.committer,topCommiter.commits 
+                print topCommiter.repo,'|',topCommiter.committer,'|',topCommiter.commits 
 
